@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
 
         jump = (Input.GetAxis("Jump") > 0);
+
+       
         if (!jump)
 
             velocidadx = h * Speed;
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Suelo")
         {
+            
             numerosaltos = 0;
         }
         if (collision.gameObject.tag == "End Game")
