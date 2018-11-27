@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class Bellota : MonoBehaviour
 {
-
     public float speed = 20f;
-    public Rigidbody2D rb;
     public int damage = 10;
-    // Use this for initialization
-    void Start()
+    public Rigidbody2D rb;
+
+    private float liveTime = 3f;
+    private float timer = 0;
+
+    private EnemyAi Enemigo;
+
+    private void Start()
     {
         rb.velocity = transform.right * speed;
     }
-
-    // Update is called once per frame
-    void OnTriggerEnter2D(Collider2D hitInfo)
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= liveTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         if (hitInfo.CompareTag("Enemigo"))
         {
-            EnemyAi Enemigo = hitInfo.GetComponent<EnemyAi>();
-
-
-
+            Enemigo = hitInfo.GetComponent<EnemyAi>();
             Enemigo.TakeDamage(damage);
-
-
-            Debug.Log(hitInfo);
+            //Debug.Log(hitInfo);
             Destroy(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-        
-
     }
 }
 

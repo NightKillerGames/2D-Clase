@@ -9,10 +9,8 @@ public class PlayerController : MonoBehaviour {
     private float h;
     public float Speed;
     public float PlayerHealth;
-    private float minYwalkable;
     public float AirFactor = 0.5f;
     private bool subida = false;
-    private float numerosaltos = 0;
     public LayerMask groundLayer;
     private Rigidbody2D rb2d;
     public Text pausita;
@@ -23,10 +21,8 @@ public class PlayerController : MonoBehaviour {
 
     private float velocidadx;
     private bool jump;
-    private bool jumppressed = false;
     private bool grounded;
     private RaycastHit2D[] results = new RaycastHit2D[14];
-    [Range(0, 90)] public float maxSlope;
 
     public float shootDelayMaxTime = 0.1f;
     private float shootDelay;
@@ -34,19 +30,14 @@ public class PlayerController : MonoBehaviour {
     public Transform firePoint;
     public GameObject BellotaPrefab;
     private bool puerta = false;
+
     void Start()
     {
-
         rb2d = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         ator = GetComponent<Animator>();
+    }
 
-        minYwalkable = Mathf.Cos(Mathf.Deg2Rad * maxSlope);
-    }
-    void Shoot()
-    {
-        Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
-    }
     private void Update()
     {
         h = Input.GetAxis("Horizontal");
@@ -59,11 +50,11 @@ public class PlayerController : MonoBehaviour {
             velocidadx = h * Speed;
         }
 
-        if (rb2d.velocity.y > 0.1)
+        if (rb2d.velocity.y > 0)
         {
             subida = true;
         }
-        if (rb2d.velocity.y < 0.1)
+        if (rb2d.velocity.y < 0)
         {
             subida = false;
         }
@@ -71,16 +62,14 @@ public class PlayerController : MonoBehaviour {
         ator.SetFloat("Velocidad", Mathf.Abs(velocidadx));
         ator.SetBool("Grounded", grounded);
         ator.SetBool("Subida", subida);
-        jumppressed = false;
 
         shootDelay += Time.deltaTime;
-
         if (Input.GetButtonDown("Fire1") && shootDelay>=shootDelayMaxTime)
         {
             Shoot();
             shootDelay = 0;
         }
-
+       
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale == 0)
@@ -96,82 +85,37 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-
-         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
-         if (h < 0)
-         {
+        //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
+        if (h < 0)
              transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
-
-         }
-         if (h > 0)
-         {
+        if (h > 0)
              transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
 
-         }
+        /*if (!grounded) velocidadx *= AirFactor; */ //He arreglado lo del air factor pero creo que no tiene sentido en este juego, lo dejo por si lo usamos como un debuff o aglko
 
-      
-
-        if (!grounded)
-            h *= AirFactor;
-       /* if (h > 0)
-            spr.flipX = false;
-        if (h < 0)
-            spr.flipX = true;*/
-         if(puerta && Input.GetKeyDown(KeyCode.E)){
+        if (puerta && Input.GetKeyDown(KeyCode.E)){
             SceneManager.LoadScene("Level01");
         }
+        Debug.Log(h.ToString("n2") + " " + velocidadx.ToString("n2") + " " + rb2d.velocity.x.ToString("n2"));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Suelo")
-        {
-            
-            numerosaltos = 0;
-        }
-        if (collision.gameObject.tag == "End Game")
-        {
-
-            Destroy(this.gameObject);
-            
-
-        }
-    }
-
+  
     private void FixedUpdate()
     {
-
-        //rb2d.velocity = new Vector2(velocidadx, rb2d.velocity.y);
-
+        rb2d.velocity = new Vector2(velocidadx, rb2d.velocity.y);
         int nresults = rb2d.Cast(Vector2.down, results, grounddetectionradius);
         grounded = (nresults > 0);
-
-        if (nresults > 0)//comprobar con la primera colision que reciba la direccion de esta
+        //Debug.Log(nresults +" " + grounded + " "+ rb2d.velocity.y);
+        if (jump && grounded)
         {
-            Vector2 normal = results[0].normal;
-            //si la pendiente es demasiado grade se considera pared
-            if (normal.y < minYwalkable)
-            {
-
-            }
-            else
-            {
-                rb2d.velocity = new Vector2(normal.y * velocidadx, -normal.x * velocidadx);
-            }
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(velocidadx, rb2d.velocity.y);
-        }
-
-        if (jump && !jumppressed && grounded)
-        {
-
-            numerosaltos = 1;
             rb2d.AddForce(new Vector2(0, jumpimpulse), ForceMode2D.Impulse);
-            jumppressed = true;
-
         }
     }
+
+    void Shoot()
+    {
+        Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Puerta"))
@@ -179,6 +123,7 @@ public class PlayerController : MonoBehaviour {
             puerta = true;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Puerta"))
@@ -187,5 +132,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "End Game") 
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
-
