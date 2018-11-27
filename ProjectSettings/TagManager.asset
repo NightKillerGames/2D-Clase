@@ -8,6 +8,7 @@ TagManager:
   - Enemigo
   - End Game
   - NPC
+  - Puerta
   layers:
   - Default
   - TransparentFX

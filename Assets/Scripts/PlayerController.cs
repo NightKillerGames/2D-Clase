@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 
     public Transform firePoint;
     public GameObject BellotaPrefab;
-
+    private bool puerta = false;
     void Start()
     {
 
@@ -116,6 +117,9 @@ public class PlayerController : MonoBehaviour {
             spr.flipX = false;
         if (h < 0)
             spr.flipX = true;*/
+         if(puerta && Input.GetKeyDown(KeyCode.E)){
+            SceneManager.LoadScene("Level01");
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -170,9 +174,16 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Puerta")
+        if (collision.gameObject.CompareTag("Puerta"))
         {
-            Debug.Log("patata");
+            puerta = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Puerta"))
+        {
+            puerta = false;
         }
     }
 

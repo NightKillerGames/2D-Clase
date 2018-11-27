@@ -184,7 +184,7 @@ MonoBehaviour:
   m_MinSize: {x: 476, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 162
+  controlID: 54
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 442}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 139
+  controlID: 158
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -279,8 +279,8 @@ MonoBehaviour:
     y: 0
     width: 671
     height: 462
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -381,8 +381,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 1
-    m_VSlider: 1
+    m_HSlider: 0
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoom: 0
@@ -394,18 +394,18 @@ MonoBehaviour:
       y: 17
       width: 667
       height: 424
-    m_Scale: {x: 1.1834109, y: 1.1834108}
-    m_Translation: {x: 301.75345, y: 213.57567}
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 333.5, y: 212}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -254.9862
-      y: -180.47467
-      width: 563.62506
-      height: 358.2864
+      x: -333.5
+      y: -212
+      width: 667
+      height: 424
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
@@ -447,9 +447,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.9658436, y: -0.98755145, z: 0.08070694}
+    m_Target: {x: 0.15225923, y: 0.15543808, z: 0.050849546}
     speed: 2
-    m_Value: {x: 1.9658436, y: -0.98755145, z: 0.08070694}
+    m_Value: {x: 0.15225923, y: 0.15543808, z: 0.050849546}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -477,9 +477,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.930913
+    m_Target: 16.857677
     speed: 2
-    m_Value: 13.930913
+    m_Value: 16.857677
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -705,23 +705,23 @@ MonoBehaviour:
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ca2b0000
-    m_LastClickedID: 11210
-    m_ExpandedIDs: 000000001c2a0000922a0000b22a0000062b00002a2b00004e2b0000802d0000422f0000442f0000462f0000482f00004a2f00004c2f00004e2f0000502f0000522f000000ca9a3bffffff7f
+    m_SelectedIDs: 7a290000
+    m_LastClickedID: 10618
+    m_ExpandedIDs: 00000000cc2700004228000062280000b6280000da280000fe280000302b00000a2d00000c2d00000e2d0000102d0000122d0000142d0000162d0000182d00001a2d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Scripts
-      m_OriginalName: Scripts
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11256
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -735,7 +735,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c2a0000922a0000b22a0000062b00002a2b00004e2b0000802d0000f02d0000422f0000442f0000462f0000482f00004a2f00004c2f00004e2f0000502f0000522f0000
+    m_ExpandedIDs: 00000000cc2700004228000062280000b6280000da280000fe280000302b00000a2d00000c2d00000e2d0000102d0000122d0000142d0000162d0000182d00001a2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -819,20 +819,20 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9c2d0000
-    m_LastClickedID: 0
-    m_ExpandedIDs: aed1feff3eb9ffff44fbffff00000000842e0000982e000008320000
+    m_SelectedIDs: 40320000
+    m_LastClickedID: 12864
+    m_ExpandedIDs: 00e7fefffc99ffff9efbffff00000000382c00009e2c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GameObject
-      m_OriginalName: GameObject
+      m_Name: End Game Suicide
+      m_OriginalName: End Game Suicide
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -15740
+      m_UserData: 11340
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
