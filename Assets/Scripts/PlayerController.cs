@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float jumpimpulse;
     private float h;
     public float Speed;
+    public float PlayerHealth;
 
     private float minYwalkable;
     public float AirFactor = 0.5f;
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         {
 
             Destroy(this.gameObject);
-            ok.enabled = true;
+            
 
         }
     }
