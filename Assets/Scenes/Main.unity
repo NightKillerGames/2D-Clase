@@ -262,9 +262,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.037775755, y: -0.35831964}
+  m_Offset: {x: -0.18538445, y: -0.35831964}
   serializedVersion: 2
-  m_Radius: 0.6540421
+  m_Radius: 0.5064334
 --- !u!1 &583105614
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 583105614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.51, y: -0.61, z: 0.29833376}
+  m_LocalPosition: {x: 0.76, y: -0.46, z: 0.29833376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 231881304}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec2019eafa7d224d9d5cfd4d95a2c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 231881304}
+  firePoint: {fileID: 583105615}
   BellotaPrefab: {fileID: 1757903775235458, guid: bedee8cf9703c8547b4b53958cd01fac,
     type: 2}
 --- !u!1 &643267900
