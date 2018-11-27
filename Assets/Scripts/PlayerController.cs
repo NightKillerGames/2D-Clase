@@ -8,10 +8,9 @@ public class PlayerController : MonoBehaviour {
     private float h;
     public float Speed;
     public float PlayerHealth;
-
     private float minYwalkable;
     public float AirFactor = 0.5f;
-
+    private bool subida = false;
     private float numerosaltos = 0;
     public LayerMask groundLayer;
     private Rigidbody2D rb2d;
@@ -28,6 +27,11 @@ public class PlayerController : MonoBehaviour {
     private RaycastHit2D[] results = new RaycastHit2D[14];
     [Range(0, 90)] public float maxSlope;
 
+    public float shootDelayMaxTime = 0.1f;
+    private float shootDelay;
+
+    public Transform firePoint;
+    public GameObject BellotaPrefab;
 
     void Start()
     {
@@ -37,7 +41,10 @@ public class PlayerController : MonoBehaviour {
         ator = GetComponent<Animator>();
 
         minYwalkable = Mathf.Cos(Mathf.Deg2Rad * maxSlope);
-
+    }
+    void Shoot()
+    {
+        Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
     }
     private void Update()
     {
@@ -47,14 +54,31 @@ public class PlayerController : MonoBehaviour {
 
        
         if (!jump)
-
+        {
             velocidadx = h * Speed;
+        }
+
+        if (rb2d.velocity.y > 0.1)
+        {
+            subida = true;
+        }
+        if (rb2d.velocity.y < 0.1)
+        {
+            subida = false;
+        }
 
         ator.SetFloat("Velocidad", Mathf.Abs(velocidadx));
         ator.SetBool("Grounded", grounded);
+        ator.SetBool("Subida", subida);
         jumppressed = false;
 
+        shootDelay += Time.deltaTime;
 
+        if (Input.GetButtonDown("Fire1") && shootDelay>=shootDelayMaxTime)
+        {
+            Shoot();
+            shootDelay = 0;
+        }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -72,7 +96,7 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        /* //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
+         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
          if (h < 0)
          {
              transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
@@ -82,15 +106,16 @@ public class PlayerController : MonoBehaviour {
          {
              transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
 
-         }*/
+         }
 
+      
 
         if (!grounded)
             h *= AirFactor;
-        if (h > 0)
+       /* if (h > 0)
             spr.flipX = false;
         if (h < 0)
-            spr.flipX = true;
+            spr.flipX = true;*/
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -142,10 +167,13 @@ public class PlayerController : MonoBehaviour {
             jumppressed = true;
 
         }
-
-
-
-
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Puerta")
+        {
+            Debug.Log("patata");
+        }
     }
 
 }
