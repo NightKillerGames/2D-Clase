@@ -76,20 +76,6 @@ public class PlayerController : MonoBehaviour {
             shootDelay = 0;
         }
        
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (Time.timeScale == 0)
-            {
-                Time.timeScale = 1;
-                //pausita.enabled = false;
-
-            }
-            else if (Time.timeScale == 1)
-            {
-                Time.timeScale = 0;
-               // pausita.enabled = true;
-            }
-        }
 
         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
         if (h < 0)

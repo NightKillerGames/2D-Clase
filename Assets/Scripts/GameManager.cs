@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public Sprite[] corazones = new Sprite[4];
     public Image salud;
+    public GameObject pause;
     private PlayerController pc;
 
     void Awake()
@@ -26,7 +27,10 @@ public class GameManager : MonoBehaviour {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 	
-	void Update () {
+
+    void Update()
+    {
+        //Actualizacion de la vida
         switch (pc.playerHealth)
         {
             case 0:
@@ -46,6 +50,20 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("case 3");
                 break;
         }
-	}
+        //Pausa
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                pause.SetActive(false);
+            }
+            else if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                pause.SetActive(true);
+            }
+        }
+    }
 
 }
