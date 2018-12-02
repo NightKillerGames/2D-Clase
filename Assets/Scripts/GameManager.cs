@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     public Sprite[] corazones = new Sprite[4];
     public Image salud;
-    public GameObject pause;
-    private PlayerController pc;
+    public GameObject gameOverText;
+    public GameObject pauseText;
 
+    private PlayerController pc;
+    
     void Awake()
     {
         if (instance == null)
@@ -26,10 +29,14 @@ public class GameManager : MonoBehaviour {
     void Start () {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
-	
 
     void Update()
     {
+        if (pc.gameOver)
+        {
+            gameOverText.SetActive(true);
+           
+        }
         //Actualizacion de la vida
         switch (pc.playerHealth)
         {
@@ -50,18 +57,19 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("case 3");
                 break;
         }
+        
         //Pausa
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale == 0)
             {
                 Time.timeScale = 1;
-                pause.SetActive(false);
+                pauseText.SetActive(false);
             }
             else if (Time.timeScale == 1)
             {
                 Time.timeScale = 0;
-                pause.SetActive(true);
+                pauseText.SetActive(true);
             }
         }
     }

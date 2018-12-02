@@ -197,15 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpimpulse: 9
-  Speed: 5
-  PlayerHealth: 0
-  AirFactor: 0.002
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  pausita: {fileID: 0}
-  ok: {fileID: 0}
+  speed: 5
+  airFactor: 0.5
   grounddetectionradius: 0.02
+  invincibilityTime: 0.5
+  empujeDMG: {x: 0, y: 0}
+  playerHealth: 3
+  gameOver: 0
   shootDelayMaxTime: 0.1
   firePoint: {fileID: 0}
   BellotaPrefab: {fileID: 0}
@@ -359,7 +357,6 @@ GameObject:
   - component: {fileID: 1106836537}
   - component: {fileID: 1106836536}
   - component: {fileID: 1106836535}
-  - component: {fileID: 1106836534}
   m_Layer: 0
   m_Name: Rana
   m_TagString: Enemigo
@@ -367,18 +364,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1106836534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1106836533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eccdfca337e9e64da45a680cc4ea89b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!58 &1106836535
 CircleCollider2D:
   m_ObjectHideFlags: 0

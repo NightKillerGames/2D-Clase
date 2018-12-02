@@ -4,14 +4,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour { 
+/// <summary>
+/// hay que acordarse de no dejar numeros hardcodeados que este señor nos baja 2 puntos seguro
+/// </summary>
     public float jumpimpulse;
     public float speed;
-    public float airFactor = 0.5f;
     public float grounddetectionradius = 0.5f;
+    public float invincibilityTime = 0.5f;
+    public Vector2 empujeDMG;
+    [HideInInspector] public int playerHealth = 3;
+    [HideInInspector] public bool gameOver = false;
 
-    [HideInInspector]public int playerHealth = 3;
-    private bool playerIsDead = false;
+    private bool canMove = true;
+    private bool dmg = false;
+    private bool empuje = false;
+    private float invincibilityTimeCounter;
     private float h;
     private bool subida = false;
     private float velocidadx;
@@ -33,18 +41,23 @@ public class PlayerController : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         ator = GetComponent<Animator>();
     }
-    public void GameOver()
-    {
-        Debug.Log("Muerto");
-        
-    }
+ 
     private void Update()
     {
-        if (playerIsDead)
+        ator.SetBool("Dmg", dmg);
+        if (gameOver)
         {
             GameOver();
-            
             return;
+        }
+        if (dmg)
+        {
+            invincibilityTimeCounter += Time.deltaTime;
+            if(invincibilityTimeCounter >= invincibilityTime)
+            {
+                dmg = false;
+                invincibilityTimeCounter = 0;
+            }
         }
         h = Input.GetAxis("Horizontal");
 
@@ -68,14 +81,14 @@ public class PlayerController : MonoBehaviour {
         ator.SetFloat("Velocidad", Mathf.Abs(velocidadx));
         ator.SetBool("Grounded", grounded);
         ator.SetBool("Subida", subida);
+       
 
         shootDelay += Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && shootDelay>=shootDelayMaxTime)
+        if (Input.GetButtonDown("Fire1") && shootDelay >= shootDelayMaxTime)
         {
             Shoot();
             shootDelay = 0;
         }
-       
 
         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
         if (h < 0)
@@ -83,53 +96,70 @@ public class PlayerController : MonoBehaviour {
         if (h > 0)
              transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
 
-        /*if (!grounded) velocidadx *= airFactor; */ //He arreglado lo del air factor pero creo que no tiene sentido en este juego, lo dejo por si lo usamos como un debuff o aglko
-
         if (puerta && Input.GetKeyDown(KeyCode.E)){
             SceneManager.LoadScene("Level01");
         }
-        Debug.Log(h.ToString("n2") + " " + velocidadx.ToString("n2") + " " + rb2d.velocity.x.ToString("n2"));
+        //Debug.Log(h.ToString("n2") + " " + velocidadx.ToString("n2") + " " + rb2d.velocity.x.ToString("n2"));
     }
-  
-
 
     private void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(velocidadx, rb2d.velocity.y);
+        if (canMove) {
+            rb2d.velocity = new Vector2(velocidadx, rb2d.velocity.y);
+        }
         int nresults = rb2d.Cast(Vector2.down, results, grounddetectionradius);
         grounded = (nresults > 0);
         //Debug.Log(nresults +" " + grounded + " "+ rb2d.velocity.y);
-        if (jump && grounded)
+        if (jump && grounded && canMove)
         {
             rb2d.AddForce(new Vector2(0, jumpimpulse), ForceMode2D.Impulse);
         }
+        if (empuje)
+        {
+            rb2d.AddForce(empujeDMG, ForceMode2D.Impulse);
+            empuje = false;
+            StartCoroutine("StopPlayerMovement");
+        }
+    }
+    IEnumerator StopPlayerMovement()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
+    }
+    IEnumerator GoToMenu()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Menu");
     }
 
     void Shoot()
     {
         Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
     }
+  
+    public void GameOver()
+    {
+        Debug.Log("Muerto");
+        StartCoroutine("GoToMenu");
+        GetComponent<CapsuleCollider2D>().enabled = false;
+    }
     public void TakeDmg()
     {
         playerHealth-=1;
+        empuje = true;
+        dmg = true;
         if(playerHealth == 0)
         {
-            playerIsDead = true;
+            empuje = false;
+            gameOver = true;
         }
-    }
+     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Puerta"))
         {
-            puerta = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Puerta"))
-        {
-            puerta = false;
+            SceneManager.LoadScene("Level01");
         }
     }
 

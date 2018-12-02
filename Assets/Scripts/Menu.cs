@@ -22,11 +22,8 @@ public class Menu : MonoBehaviour
     }
     IEnumerator FadeImage()
     {
-        for (float i = 1; i >= 0; i -= (Time.deltaTime*0.5f))
-        {
-            fadein.color = new Color(1, 1, 1, i);
-            yield return null;
-        }
-        Destroy(gameObject);
+        fadein.CrossFadeAlpha(0, 3, true);
+        yield return new WaitForSeconds(3);
+        Destroy(fadein.gameObject);
     }
 }
