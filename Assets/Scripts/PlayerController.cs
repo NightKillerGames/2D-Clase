@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour {
         ator.SetFloat("Velocidad", Mathf.Abs(velocidadx));
         ator.SetBool("Grounded", grounded);
         ator.SetBool("Subida", subida);
-       
+        
 
         shootDelay += Time.deltaTime;
         if (Input.GetButtonDown("Fire1") && shootDelay >= shootDelayMaxTime)
@@ -167,7 +167,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "End Game") 
         {
-            Destroy(this.gameObject);
+            ator.SetBool("Dmg", dmg);
+            gameOver =true;
         }
     }
 }
