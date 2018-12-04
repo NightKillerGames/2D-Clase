@@ -9,6 +9,7 @@ TagManager:
   - End Game
   - NPC
   - Puerta
+  - Hazard
   layers:
   - Default
   - TransparentFX
