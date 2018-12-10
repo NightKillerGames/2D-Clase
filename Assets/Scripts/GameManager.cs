@@ -10,9 +10,12 @@ public class GameManager : MonoBehaviour {
     public Image salud;
     public GameObject gameOverText;
     public GameObject pauseText;
-
+    private GameObject canvas;
     private PlayerController pc;
-    
+    public int playerHealth = 3;
+    public bool gameOver = false;
+    private bool canvasIsEnable = false;
+
     void Awake()
     {
         if (instance == null)
@@ -28,17 +31,17 @@ public class GameManager : MonoBehaviour {
 
     void Start () {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
 	}
 
     void Update()
     {
-        if (pc.gameOver)
+        if (gameOver)
         {
-            gameOverText.SetActive(true);
-           
+            GameOver(true);
         }
         //Actualizacion de la vida
-        switch (pc.playerHealth)
+        switch (playerHealth)
         {
             case 0:
                 salud.sprite = corazones[0];
@@ -74,4 +77,24 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public IEnumerator GoToMenu()
+    {
+        gameOver = false;
+        yield return new WaitForSeconds(3);
+        ActivarCanvas(false);
+        playerHealth = 3;
+        SceneManager.LoadScene("Menu");
+    }
+    public void ActivarCanvas(bool enable)
+    {
+        canvas.SetActive(enable);
+    }
+    public void GameOver(bool isOver)
+    {
+        Debug.Log("Muerto");
+        gameOver = isOver;
+        gameOverText.SetActive(isOver);
+        if(isOver)
+            StartCoroutine(GoToMenu());
+    }
 }

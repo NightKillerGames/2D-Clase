@@ -10,6 +10,7 @@ TagManager:
   - NPC
   - Puerta
   - Hazard
+  - Canvas
   layers:
   - Default
   - TransparentFX

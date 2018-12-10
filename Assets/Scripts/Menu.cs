@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public Image fadein;
+    private GameManager gm;
+
     private void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        gm.GameOver(false);
         StartCoroutine("FadeImage");
     }
+
     public void PlayGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        gm.ActivarCanvas(true);
     }
 
     public void QuitGame()

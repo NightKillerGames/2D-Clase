@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
         {
             var v = transform.position;
             v.x = target.position.x;
-            v.y = target.position.y+2;
+            v.y = target.position.y;
             transform.position = Vector3.MoveTowards(transform.position, v, trackSpeed * Time.deltaTime);
         }
     }

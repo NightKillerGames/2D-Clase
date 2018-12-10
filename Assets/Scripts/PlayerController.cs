@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 
     public float shootDelayMaxTime = 0.1f;
     private float shootDelay;
+    private GameManager gm;
 
     public Transform firePoint;
     public GameObject BellotaPrefab;
@@ -40,16 +41,13 @@ public class PlayerController : MonoBehaviour {
     {
         rb2d = GetComponent<Rigidbody2D>();
         ator = GetComponent<Animator>();
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
  
     private void Update()
     {
         ator.SetBool("Dmg", dmg);
-        if (gameOver)
-        {
-            GameOver();
-            return;
-        }
+       
         if (dmg)
         {
             invincibilityTimeCounter += Time.deltaTime;
@@ -63,11 +61,8 @@ public class PlayerController : MonoBehaviour {
 
         jump = (Input.GetAxis("Jump") > 0);
 
-       
-        if (!jump)
-        {
-            velocidadx = h * speed;
-        }
+        velocidadx = h * speed;
+        
 
         if (rb2d.velocity.y > 0)
         {
@@ -124,13 +119,8 @@ public class PlayerController : MonoBehaviour {
     IEnumerator StopPlayerMovement()
     {
         canMove = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);///dasdasad///
         canMove = true;
-    }
-    IEnumerator GoToMenu()
-    {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Menu");
     }
 
     void Shoot()
@@ -138,28 +128,24 @@ public class PlayerController : MonoBehaviour {
         Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
     }
   
-    public void GameOver()
-    {
-        Debug.Log("Muerto");
-        StartCoroutine("GoToMenu");
-        GetComponent<CapsuleCollider2D>().enabled = false;
-    }
     public void TakeDmg()
     {
-        playerHealth-=1;
+        gm.playerHealth-=1;
         empuje = true;
         dmg = true;
-        if(playerHealth == 0)
+        if(gm.playerHealth == 0)
         {
             empuje = false;
+            gm.GameOver(true);
             gameOver = true;
+            GetComponent<CapsuleCollider2D>().enabled = false;
         }
-     }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Puerta"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -167,8 +153,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "End Game") 
         {
-            ator.SetBool("Dmg", dmg);
-            gameOver =true;
+            dmg = true;
+            gameOver = true;
+            gm.GameOver(true);
+            GetComponent<CapsuleCollider2D>().enabled = false;
         }
     }
 }
