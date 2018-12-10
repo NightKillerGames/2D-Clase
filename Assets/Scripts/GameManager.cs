@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    public float gemas;
     public Sprite[] corazones = new Sprite[4];
     public Image salud;
+    public Text countText;
     public GameObject gameOverText;
     public GameObject pauseText;
     private GameObject canvas;
@@ -75,6 +77,12 @@ public class GameManager : MonoBehaviour {
                 pauseText.SetActive(true);
             }
         }
+    }
+
+    public void GemaCogida()
+    {
+        gemas ++;
+        countText.text = gemas.ToString()+"X ";
     }
 
     public IEnumerator GoToMenu()

@@ -185,14 +185,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa02ee9690a93514798193fa36de242f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gemas: 0
   corazones:
   - {fileID: 21300000, guid: af51c7e225f369642b0849636c354eff, type: 3}
   - {fileID: 21300000, guid: c96755b5e7fef904a83c6aee92aad1f2, type: 3}
   - {fileID: 21300000, guid: 2cdbc0de51c290c4380a9b9a3215ebdb, type: 3}
   - {fileID: 21300000, guid: 3ce45898a541b9c4e8499c1d5e3448d3, type: 3}
   salud: {fileID: 114764881415215602}
+  countText: {fileID: 0}
   gameOverText: {fileID: 1236061996630606}
   pauseText: {fileID: 1297371201006656}
+  playerHealth: 3
+  gameOver: 0
 --- !u!114 &114185572371610070
 MonoBehaviour:
   m_ObjectHideFlags: 1

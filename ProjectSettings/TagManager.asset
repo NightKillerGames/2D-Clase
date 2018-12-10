@@ -11,6 +11,7 @@ TagManager:
   - Puerta
   - Hazard
   - Canvas
+  - Gemas
   layers:
   - Default
   - TransparentFX

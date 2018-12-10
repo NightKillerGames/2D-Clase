@@ -147,6 +147,11 @@ public class PlayerController : MonoBehaviour {
         {
            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        if (collision.gameObject.tag == "Gemas")
+        {
+            gm.GemaCogida();
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -158,5 +163,6 @@ public class PlayerController : MonoBehaviour {
             gm.GameOver(true);
             GetComponent<CapsuleCollider2D>().enabled = false;
         }
+       
     }
 }
