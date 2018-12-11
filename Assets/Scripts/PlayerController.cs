@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject BellotaPrefab;
     private bool puerta = false;
     public Transform puñetazo;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -159,6 +160,10 @@ public class PlayerController : MonoBehaviour {
         {
             gm.GemaCogida();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            TakeDmg();
         }
     }
    
