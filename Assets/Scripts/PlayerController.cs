@@ -161,12 +161,14 @@ public class PlayerController : MonoBehaviour {
             gm.GemaCogida();
             Destroy(collision.gameObject);
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("Hazard"))
         {
             TakeDmg();
         }
     }
-   
     private void AtaqueCorto()
     {
         Debug.Log("atacado");
