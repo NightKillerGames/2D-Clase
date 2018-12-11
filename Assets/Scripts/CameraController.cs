@@ -5,24 +5,18 @@ public class CameraController : MonoBehaviour
 {
 
     public Transform target;
-    private float trackSpeed = 10;
+    public float trackSpeed = 0.124f;
+    public Vector3 offset;
 
 
     // Set target
-    public void SetTarget(Transform t)
-    {
-        target = t;
-    }
-
+    
     // Track target
     void LateUpdate()
     {
-        if (target)
-        {
-            var v = transform.position;
-            v.x = target.position.x;
-            v.y = target.position.y;
-            transform.position = Vector3.MoveTowards(transform.position, v, trackSpeed * Time.deltaTime);
-        }
+        Vector3 posiciondeseada = target.position + offset;
+        Vector3 posicionsuavidad = Vector3.Lerp(transform.position, posiciondeseada, trackSpeed);
+        transform.position = posicionsuavidad;
+        
     }
 }

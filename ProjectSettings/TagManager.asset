@@ -12,6 +12,7 @@ TagManager:
   - Hazard
   - Canvas
   - Gemas
+  - Puerta boss
   layers:
   - Default
   - TransparentFX
