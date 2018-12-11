@@ -1,0 +1,7 @@
+
+Assets/Scripts/GameManager.cs
+Assets/Scripts/PlayerController.cs
+Assets/Anim/Player.controller
+Assets/Anim/Punch.anim
+Assets/Anim/Punch.anim.meta
+Assets/Scenes/Main.unity

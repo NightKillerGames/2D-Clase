@@ -47,19 +47,15 @@ public class GameManager : MonoBehaviour {
         {
             case 0:
                 salud.sprite = corazones[0];
-                Debug.Log("case 0");
                 break;
             case 1:
                 salud.sprite = corazones[1];
-                Debug.Log("case 1");
                 break;
             case 2:
                 salud.sprite = corazones[2];
-                Debug.Log("case 2");
                 break;
             case 3:
                 salud.sprite = corazones[3];
-                Debug.Log("case 3");
                 break;
         }
         
@@ -84,14 +80,15 @@ public class GameManager : MonoBehaviour {
         gemas ++;
         countText.text = gemas.ToString()+"X ";
     }
-
     public IEnumerator GoToMenu()
     {
         gameOver = false;
-        yield return new WaitForSeconds(3);
-        ActivarCanvas(false);
+        yield return new WaitForSeconds(1);
         playerHealth = 3;
         SceneManager.LoadScene("Menu");
+        yield return new WaitForSeconds(0.001f);
+        ActivarCanvas(false);
+
     }
     public void ActivarCanvas(bool enable)
     {

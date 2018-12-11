@@ -4,17 +4,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour { 
-/// <summary>
-/// hay que acordarse de no dejar numeros hardcodeados que este señor nos baja 2 puntos seguro
-/// </summary>
+public class PlayerController : MonoBehaviour {
+    /// <summary>
+    /// hay que acordarse de no dejar numeros hardcodeados que este señor nos baja 2 puntos seguro
+    /// </summary>
     public float jumpimpulse;
     public float speed;
     public float grounddetectionradius = 0.5f;
     public float invincibilityTime = 0.5f;
     public Vector2 empujeDMG;
-    [HideInInspector] public int playerHealth = 3;
-    [HideInInspector] public bool gameOver = false;
+    public float radioPunch = 0.2f;
+    public LayerMask lm;
 
     private bool canMove = true;
     private bool dmg = false;
@@ -36,22 +36,22 @@ public class PlayerController : MonoBehaviour {
     public Transform firePoint;
     public GameObject BellotaPrefab;
     private bool puerta = false;
-
+    public Transform puñetazo;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         ator = GetComponent<Animator>();
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
- 
+
     private void Update()
     {
         ator.SetBool("Dmg", dmg);
-       
+
         if (dmg)
         {
             invincibilityTimeCounter += Time.deltaTime;
-            if(invincibilityTimeCounter >= invincibilityTime)
+            if (invincibilityTimeCounter >= invincibilityTime)
             {
                 dmg = false;
                 invincibilityTimeCounter = 0;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
         jump = (Input.GetAxis("Jump") > 0);
 
         velocidadx = h * speed;
-        
+
 
         if (rb2d.velocity.y > 0)
         {
@@ -76,22 +76,25 @@ public class PlayerController : MonoBehaviour {
         ator.SetFloat("Velocidad", Mathf.Abs(velocidadx));
         ator.SetBool("Grounded", grounded);
         ator.SetBool("Subida", subida);
-        
+
 
         shootDelay += Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && shootDelay >= shootDelayMaxTime)
+        if (Input.GetButtonDown("Fire2") && shootDelay >= shootDelayMaxTime)
         {
             Shoot();
             shootDelay = 0;
         }
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            AtaqueCorto();
+        }
         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
         if (h < 0)
-             transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
         if (h > 0)
-             transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
 
-        if (puerta && Input.GetKeyDown(KeyCode.E)){
+        if (puerta && Input.GetKeyDown(KeyCode.E)) {
             SceneManager.LoadScene("Level01");
         }
         //Debug.Log(h.ToString("n2") + " " + velocidadx.ToString("n2") + " " + rb2d.velocity.x.ToString("n2"));
@@ -127,25 +130,30 @@ public class PlayerController : MonoBehaviour {
     {
         Instantiate(BellotaPrefab, firePoint.position, firePoint.rotation);
     }
-  
+
     public void TakeDmg()
     {
-        gm.playerHealth-=1;
+        gm.playerHealth -= 1;
         empuje = true;
         dmg = true;
-        if(gm.playerHealth == 0)
+        if (gm.playerHealth == 0)
         {
-            empuje = false;
-            gm.GameOver(true);
-            gameOver = true;
             GetComponent<CapsuleCollider2D>().enabled = false;
+            empuje = false;
+            gm.gameOver = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "End Game")
+        {
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            dmg = true;
+            gm.gameOver = true;
+        }
         if (collision.gameObject.CompareTag("Puerta"))
         {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         if (collision.gameObject.tag == "Gemas")
         {
@@ -153,15 +161,22 @@ public class PlayerController : MonoBehaviour {
             Destroy(collision.gameObject);
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+   
+    private void AtaqueCorto()
     {
-        if (collision.gameObject.tag == "End Game") 
+        Debug.Log("atacado");
+        Collider2D atacado = Physics2D.OverlapCircle(puñetazo.position, radioPunch, lm, -Mathf.Infinity, Mathf.Infinity);
+        if (atacado != null)
         {
-            dmg = true;
-            gameOver = true;
-            gm.GameOver(true);
-            GetComponent<CapsuleCollider2D>().enabled = false;
+            Debug.Log(atacado.gameObject.tag);
+            if (atacado.gameObject.CompareTag("Enemigo"))
+            {
+                atacado.GetComponent<EnemyAi>().TakeDamage(5);
+            }
+        }
+        else
+        {
+            Debug.Log("Estas atacando al aire puto tonto");
         }
        
     }
