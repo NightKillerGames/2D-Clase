@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private float velocidadx;
     private bool jump;
     private bool grounded;
+    private bool jumpReleased;
     private RaycastHit2D[] results = new RaycastHit2D[14];
     private Rigidbody2D rb2d;
     private Animator ator;
@@ -61,6 +62,20 @@ public class PlayerController : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
 
         jump = (Input.GetAxis("Jump") > 0);
+
+        if (!jump)
+        {
+            jumpReleased = true;
+        }
+
+        if (!(jump && jumpReleased))
+        {
+            jump = false;
+        }
+        else
+        {
+            jumpReleased = false;
+        }
 
         velocidadx = h * speed;
 
