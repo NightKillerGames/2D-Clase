@@ -63,8 +63,7 @@ public class PlayerController : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
 
         jump = (Input.GetAxis("Jump") > 0);
-
-        if (!jump)
+        /*if (!jump)
         {
             jumpReleased = true;
         }
@@ -76,7 +75,7 @@ public class PlayerController : MonoBehaviour {
         else
         {
             jumpReleased = false;
-        }
+        }*/
 
         velocidadx = h * speed;
 

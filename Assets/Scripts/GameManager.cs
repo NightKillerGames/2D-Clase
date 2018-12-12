@@ -17,12 +17,7 @@ public class GameManager : MonoBehaviour {
     public int playerHealth = 3;
     public bool gameOver = false;
     private bool canvasIsEnable = false;
-    
-
-
-  
-
-    
+   
 
 void Awake()
     {
