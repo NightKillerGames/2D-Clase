@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DarkZone.unity
     guid: 8050505df64099c48a364cf2150c0286
+  - enabled: 1
+    path: Assets/Scenes/SkyLevel.unity
+    guid: 8c6524b3802e806499b328dfea8e3052
