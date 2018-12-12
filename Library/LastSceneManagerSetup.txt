@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DarkZone.unity
+- path: Assets/Scenes/SkyLevel.unity
   isLoaded: 1
   isActive: 1

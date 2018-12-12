@@ -17,8 +17,14 @@ public class GameManager : MonoBehaviour {
     public int playerHealth = 3;
     public bool gameOver = false;
     private bool canvasIsEnable = false;
+    
 
-    void Awake()
+
+  
+
+    
+
+void Awake()
     {
         if (instance == null)
         {
@@ -58,7 +64,9 @@ public class GameManager : MonoBehaviour {
                 salud.sprite = corazones[3];
                 break;
         }
+        //Paralax 
         
+
         //Pausa
         if (Input.GetKeyDown(KeyCode.P))
         {
