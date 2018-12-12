@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private float velocidadx;
     private bool jump;
     private bool grounded;
+    
     private bool jumpReleased;
     private RaycastHit2D[] results = new RaycastHit2D[14];
     private Rigidbody2D rb2d;
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetButtonDown("Fire1"))
         {
+            ator.SetTrigger("puño");
             AtaqueCorto();
         }
         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
@@ -186,6 +188,7 @@ public class PlayerController : MonoBehaviour {
     }
     private void AtaqueCorto()
     {
+        
         Debug.Log("atacado");
         Collider2D atacado = Physics2D.OverlapCircle(puñetazo.position, radioPunch, lm, -Mathf.Infinity, Mathf.Infinity);
         if (atacado != null)
@@ -194,11 +197,14 @@ public class PlayerController : MonoBehaviour {
             if (atacado.gameObject.CompareTag("Enemigo"))
             {
                 atacado.GetComponent<EnemyAi>().TakeDamage(5);
+                
             }
+           
         }
         else
         {
             Debug.Log("Estas atacando al aire puto tonto");
+            
         }
        
     }
