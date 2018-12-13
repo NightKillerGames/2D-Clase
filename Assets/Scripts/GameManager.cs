@@ -45,6 +45,10 @@ void Awake()
         {
             GameOver(true);
         }
+        if (playerHealth > 3)
+        {
+            playerHealth = 3;
+        }
         //Actualizacion de la vida
         switch (playerHealth)
         {

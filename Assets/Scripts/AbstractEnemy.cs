@@ -61,7 +61,6 @@ public abstract class AbstractEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-
     }
     private void Die()
     {

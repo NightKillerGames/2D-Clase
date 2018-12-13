@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
 
         jump = (Input.GetAxis("Jump") > 0);
-        Debug.Log(rb2d.velocity.y);
         
         /* if (!jump)
         {
