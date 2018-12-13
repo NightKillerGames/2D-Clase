@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     /// <summary>
-    /// hay que acordarse de no dejar numeros hardcodeados que este señor nos baja 2 puntos seguro
+    /// hay que acordarse de no dejar numeros hardcodeados 
     /// </summary>
     public float jumpimpulse;
     public float speed;
@@ -33,7 +33,10 @@ public class PlayerController : MonoBehaviour {
 
     public float shootDelayMaxTime = 0.1f;
     private float shootDelay;
+    public float punchDelayMaxTime = 0.5f;
+    private float punchDelay;
     private GameManager gm;
+    private AudioManager audio;
 
     public Transform firePoint;
     public GameObject BellotaPrefab;
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         ator = GetComponent<Animator>();
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -64,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 
         jump = (Input.GetAxis("Jump") > 0);
         Debug.Log(rb2d.velocity.y);
-        //if (rb2d.velocity.y)
+        
         /* if (!jump)
         {
             jumpReleased = true;
@@ -99,13 +103,17 @@ public class PlayerController : MonoBehaviour {
         shootDelay += Time.deltaTime;
         if (Input.GetButtonDown("Fire2") && shootDelay >= shootDelayMaxTime)
         {
+            audio.bellota();
             Shoot();
             shootDelay = 0;
         }
-        if (Input.GetButtonDown("Fire1"))
+        punchDelay += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && punchDelay >= punchDelayMaxTime)
         {
+            audio.punch();
             ator.SetTrigger("puño");
             AtaqueCorto();
+            punchDelay = 0;
         }
         //Rotamos el gameobject del personaje(no el sprite) para mantener la posicion del punto de disparo         
         if (h < 0)
@@ -131,6 +139,7 @@ public class PlayerController : MonoBehaviour {
         if (jump && grounded && canMove)
         {
             rb2d.AddForce(new Vector2(0, jumpimpulse), ForceMode2D.Impulse);
+            audio.jump();
         }
         if (empuje)
         {
@@ -138,9 +147,9 @@ public class PlayerController : MonoBehaviour {
             empuje = false;
             StartCoroutine("StopPlayerMovement");
         }
-       // if (rb2d.velocity)
+        if (rb2d.velocity.y>9)
         {
-
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 9);
         }
     }
     IEnumerator StopPlayerMovement()

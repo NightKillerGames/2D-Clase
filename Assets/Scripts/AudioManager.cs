@@ -7,7 +7,16 @@ public class AudioManager : MonoBehaviour {
 
     private static AudioManager instance = null;
     private static PlayerController pc;
+
     public AudioClip gema;
+    public AudioClip MuerteEnemigo;
+    public AudioClip puño;
+    public AudioClip lanzarbellota;
+    public AudioClip salto;
+    public AudioClip MuertePlayer;
+
+
+
     public AudioSource audiomain;
     public AudioSource audioEfectos;
     public AudioSource audioPlayer;
@@ -32,6 +41,31 @@ public class AudioManager : MonoBehaviour {
     public void SonidoGema()
     {
         audioEfectos.clip = gema;
+        audioEfectos.Play();
+    }
+    public void MuerteEnemy()
+    {
+        audioPlayer.clip = MuerteEnemigo;
+        audioPlayer.Play();
+    }
+    public void punch ()
+    {
+        audioPlayer.clip = puño;
+        audioPlayer.Play();
+    }
+    public void bellota()
+    {
+        audioPlayer.clip = lanzarbellota;
+        audioPlayer.Play();
+    }
+    public void jump()
+    {
+        audioPlayer.clip = salto;
+        audioPlayer.Play();
+    }
+    public void Death()
+    {
+        audioEfectos.clip = MuertePlayer;
         audioEfectos.Play();
     }
 }

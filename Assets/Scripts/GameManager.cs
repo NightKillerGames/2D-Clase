@@ -102,10 +102,14 @@ void Awake()
     }
     public void GameOver(bool isOver)
     {
+        
         Debug.Log("Muerto");
         gameOver = isOver;
         gameOverText.SetActive(isOver);
-        if(isOver)
+        if (isOver)
+        {
+            audio.Death();
             StartCoroutine(GoToMenu());
+        }
     }
 }

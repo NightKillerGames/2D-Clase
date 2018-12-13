@@ -284,6 +284,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   shootDelayMaxTime: 0.3
+  punchDelayMaxTime: 0.5
   firePoint: {fileID: 583105615}
   BellotaPrefab: {fileID: 1757903775235458, guid: bedee8cf9703c8547b4b53958cd01fac,
     type: 2}
@@ -3180,6 +3181,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gema: {fileID: 8300000, guid: 0de6e0bf23f9c2c478a1e1dbb43650af, type: 3}
+  MuerteEnemigo: {fileID: 8300000, guid: 34f2b84e4271f394588c64ca8a97f9d7, type: 3}
+  "pu\xF1o": {fileID: 8300000, guid: 11be00b8cd30a1d48bde481b6ad5ebe5, type: 3}
+  lanzarbellota: {fileID: 8300000, guid: d75ea026dd2238747966dd1f4ead224b, type: 3}
+  salto: {fileID: 8300000, guid: 85bbdb5edfc95e94aa567f14506b7271, type: 3}
+  MuertePlayer: {fileID: 8300000, guid: b77b70e86c0c75c42afb5288d390e338, type: 3}
   audiomain: {fileID: 776815206}
   audioEfectos: {fileID: 1120364852}
   audioPlayer: {fileID: 934851915}
@@ -4049,7 +4055,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8b62f652037c688418727241a9793a3a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.687
   m_Pitch: 1
   Loop: 0
   Mute: 0
