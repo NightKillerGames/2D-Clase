@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
     public int playerHealth = 3;
     public bool gameOver = false;
     private bool canvasIsEnable = false;
-   
+    private AudioManager audio;
 
 void Awake()
     {
@@ -35,7 +35,9 @@ void Awake()
     void Start () {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-	}
+        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+    }
 
     void Update()
     {
@@ -81,6 +83,7 @@ void Awake()
     public void GemaCogida()
     {
         gemas ++;
+        audio.SonidoGema();
         countText.text = gemas.ToString()+"X ";
     }
     public IEnumerator GoToMenu()

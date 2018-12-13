@@ -63,7 +63,9 @@ public class PlayerController : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
 
         jump = (Input.GetAxis("Jump") > 0);
-        /*if (!jump)
+        Debug.Log(rb2d.velocity.y);
+        //if (rb2d.velocity.y)
+        /* if (!jump)
         {
             jumpReleased = true;
         }
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour {
         int nresults = rb2d.Cast(Vector2.down, results, grounddetectionradius);
         grounded = (nresults > 0);
         //Debug.Log(nresults +" " + grounded + " "+ rb2d.velocity.y);
+        
         if (jump && grounded && canMove)
         {
             rb2d.AddForce(new Vector2(0, jumpimpulse), ForceMode2D.Impulse);
@@ -134,6 +137,10 @@ public class PlayerController : MonoBehaviour {
             rb2d.AddForce(empujeDMG, ForceMode2D.Impulse);
             empuje = false;
             StartCoroutine("StopPlayerMovement");
+        }
+       // if (rb2d.velocity)
+        {
+
         }
     }
     IEnumerator StopPlayerMovement()
@@ -196,7 +203,6 @@ public class PlayerController : MonoBehaviour {
             if (atacado.gameObject.CompareTag("Enemigo"))
             {
                 atacado.GetComponent<EnemyAi>().TakeDamage(5);
-                
             }
            
         }
