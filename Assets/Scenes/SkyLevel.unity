@@ -1497,9 +1497,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: e165235388cbf574783a03acabb49ee1,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8b62f652037c688418727241a9793a3a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c78199dcae0594642824684b102a6373, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.623
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4064,6 +4064,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   shootDelayMaxTime: 0.3
+  punchDelayMaxTime: 0.5
   firePoint: {fileID: 766131939}
   BellotaPrefab: {fileID: 1757903775235458, guid: bedee8cf9703c8547b4b53958cd01fac,
     type: 2}

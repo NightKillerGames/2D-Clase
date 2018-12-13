@@ -236,8 +236,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Music\MUSICA.cs" />
+    <Compile Include="Assets\Scripts\AbstractEnemy.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
+    <Compile Include="Assets\Scripts\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Bellota.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EnemyAi.cs" />

@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip lanzarbellota;
     public AudioClip salto;
     public AudioClip MuertePlayer;
+    public AudioClip DmgPlayer;
 
 
 
@@ -67,5 +68,10 @@ public class AudioManager : MonoBehaviour {
     {
         audioEfectos.clip = MuertePlayer;
         audioEfectos.Play();
+    }
+    public void Dmgoof()
+    {
+        audioPlayer.clip = DmgPlayer;
+        audioPlayer.Play();
     }
 }

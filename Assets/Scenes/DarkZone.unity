@@ -6163,10 +6163,11 @@ AudioSource:
   m_GameObject: {fileID: 694414550}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: e165235388cbf574783a03acabb49ee1,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 880c4692fdf312b4b9e17663b1edcf85, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.53
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19029,6 +19030,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   shootDelayMaxTime: 0.3
+  punchDelayMaxTime: 0.5
   firePoint: {fileID: 255235925}
   BellotaPrefab: {fileID: 1757903775235458, guid: bedee8cf9703c8547b4b53958cd01fac,
     type: 2}

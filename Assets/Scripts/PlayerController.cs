@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDmg()
     {
+        audio.Dmgoof();
         gm.playerHealth -= 1;
         empuje = true;
         dmg = true;
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log(atacado.gameObject.tag);
             if (atacado.gameObject.CompareTag("Enemigo"))
             {
-                atacado.GetComponent<EnemyAi>().TakeDamage(5);
+                atacado.GetComponent<BasicEnemy>().TakeDamage(5);
             }
            
         }
