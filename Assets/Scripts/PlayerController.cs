@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDmg()
     {
-        audio.Dmgoof();
+        //audio.Dmgoof();
         gm.playerHealth -= 1;
         empuje = true;
         dmg = true;

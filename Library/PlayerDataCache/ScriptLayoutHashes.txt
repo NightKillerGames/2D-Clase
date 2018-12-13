@@ -8,7 +8,7 @@ Assets/Scenes/Level01.unity
 Assets/Scenes/DarkZone.unity
 Assets/Scenes/SkyLevel.unity
 SceneListEnd?
-fa4b09a8ee5948c2845591d61daf9e4c Assembly-CSharp.dll:.InventoryController
+0e046ebad70cda9d8d10de06f82880cb Assembly-CSharp.dll:.InventoryController
 c2fcb228caa715aa548619b0c441f901 Assembly-CSharp.dll:.Menu
 833dca449bb28e079d508812fbdc93c1 Assembly-CSharp.dll:.VolumeManager
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
@@ -16,13 +16,13 @@ dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics
 48d589cd577563c27321900ce6261a48 Assembly-CSharp.dll:.GameManager
 d55388361c1d51cc68823e1de57880ae Assembly-CSharp.dll:.Bellota
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
-2ad91679d13120cc9c8764345f080f2f Assembly-CSharp.dll:.GameController
-ad0843dc5844295eb779e75691b6f0e1 Assembly-CSharp.dll:.EnemyAi
+921ca21eb1a2207cf68d5a6dc1c4522a Assembly-CSharp.dll:.BasicEnemy
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MUSICA
 ddea32600a2cd34c479367ac6c4791a7 Assembly-CSharp.dll:.ItemsPickUp
 c3c4442e76ed01d4669119b0172e1f93 Assembly-CSharp.dll:.CameraController
 b4fff1678d7179bb9fea68faa6788bd0 Assembly-CSharp.dll:.SpeedFactor
-53fd73168bb6596d2ef4090f5035d0d5 Assembly-CSharp.dll:.PlayerController
+17f446bb96fce084037d11c85118091b Assembly-CSharp.dll:.AudioManager
+5e9f7c7045673207559492bf8ba6027f Assembly-CSharp.dll:.PlayerController
 2124af75d6b3afb90d3c8471b98e9f78 Assembly-CSharp.dll:.BackgroundParallax
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
