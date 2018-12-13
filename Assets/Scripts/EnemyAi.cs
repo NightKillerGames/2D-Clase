@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/* 
 public class EnemyAi : MonoBehaviour
 {
-    public int health = 100;
+   public int health = 100;
     private Animator ator2;
     private PlayerController pc;
     private bool muerto = false;
@@ -41,5 +41,5 @@ public class EnemyAi : MonoBehaviour
     {
         Destroy(gameObject);
     }
-}
+}*/
 

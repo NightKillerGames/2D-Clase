@@ -19,7 +19,6 @@ public class ItemsPickUp : MonoBehaviour {
             {
                 if (inventory.isFull[i] == false)
                 {
-
                     inventory.isFull[i] = true;
                     Instantiate(objetoInventario, inventory.slots[i].transform, false);
                     Destroy(gameObject);
