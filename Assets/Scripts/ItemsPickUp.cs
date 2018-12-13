@@ -8,7 +8,7 @@ public class ItemsPickUp : MonoBehaviour {
     public GameObject objetoInventario;
 
     void Start () {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryController>();
+        inventory = GameObject.FindGameObjectWithTag("GameController").GetComponent<InventoryController>();
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

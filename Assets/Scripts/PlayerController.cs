@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         ator.SetBool("Dmg", dmg);
-
+       
         if (dmg)
         {
             invincibilityTimeCounter += Time.deltaTime;

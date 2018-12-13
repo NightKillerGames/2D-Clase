@@ -47,11 +47,13 @@ public abstract class AbstractEnemy : MonoBehaviour
         }
         if (_currentPatrolTime >= 1)
         {
+            transform.rotation = Quaternion.Euler(new Vector3(0, -360, 0));
             _currentPatrolTime = 1;
             _direction = !_direction;
         }
         else if (_currentPatrolTime <= 0)
         {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             _currentPatrolTime = 0;
             _direction = !_direction;
         }
