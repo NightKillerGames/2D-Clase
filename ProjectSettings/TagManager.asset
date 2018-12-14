@@ -14,6 +14,7 @@ TagManager:
   - Gemas
   - Puerta boss
   - AudioManager
+  - Boss
   layers:
   - Default
   - TransparentFX

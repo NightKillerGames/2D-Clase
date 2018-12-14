@@ -12,6 +12,7 @@ public class Bellota : MonoBehaviour
     private float timer = 0;
 
     private AbstractEnemy Enemigo;
+    private BossFightController Boss;
 
     private void Start()
     {
@@ -31,6 +32,12 @@ public class Bellota : MonoBehaviour
         {
             Enemigo = hitInfo.GetComponent<AbstractEnemy>();
             Enemigo.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else if (hitInfo.CompareTag("Boss"))
+        {
+            Boss = hitInfo.GetComponent<BossFightController>();
+            Boss.TakeDmg(damage);
             Destroy(gameObject);
         }
         else

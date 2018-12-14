@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public Image salud;
     public Text countText;
     public GameObject gameOverText;
+    public GameObject victoryText;
     public GameObject pauseText;
     private GameObject canvas;
     private PlayerController pc;
@@ -94,15 +95,14 @@ void Awake()
     public IEnumerator GoToMenu()
     {
         gameOver = false;
-        ActivarCanvas(false);
-        yield return new WaitForSeconds(1);
+        ic.VaciarInventario();
+        yield return new WaitForSeconds(3);
         playerHealth = 3;
         gemas = 0;
-        ic.VaciarInventario();
+        countText.text = "OX ";
         SceneManager.LoadScene("Menu");
-       // yield return new WaitForSeconds(0.001f);
-       // ActivarCanvas(false);
-
+        yield return new WaitForSeconds(0.001f);
+        ActivarCanvas(false);
     }
     public void ActivarCanvas(bool enable)
     {
@@ -110,8 +110,6 @@ void Awake()
     }
     public void GameOver(bool isOver)
     {
-        
-        Debug.Log("Muerto");
         gameOver = isOver;
         gameOverText.SetActive(isOver);
         if (isOver)
@@ -119,5 +117,10 @@ void Awake()
             _audio.Death();
             StartCoroutine(GoToMenu());
         }
+    }
+    public void Victoria()
+    {
+        victoryText.SetActive(true);
+        StartCoroutine(GoToMenu());
     }
 }

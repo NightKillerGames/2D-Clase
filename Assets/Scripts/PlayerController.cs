@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     public Vector2 empujeDMG;
     public float radioPunch = 0.2f;
     public LayerMask lm;
+    public int punchDamage = 5;
 
     private bool canMove = true;
     private bool dmg = false;
@@ -68,20 +69,6 @@ public class PlayerController : MonoBehaviour {
 
         jump = (Input.GetAxis("Jump") > 0);
         
-        /* if (!jump)
-        {
-            jumpReleased = true;
-        }
-
-        if (!(jump && jumpReleased))
-        {
-            jump = false;
-        }
-        else
-        {
-            jumpReleased = false;
-        }*/
-
         velocidadx = h * speed;
 
 
@@ -196,18 +183,23 @@ public class PlayerController : MonoBehaviour {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(5)){
             if (collision.CompareTag("FinalDoor"))
             {
-                gm.ActivarCanvas(false);
-                SceneManager.LoadScene(0);
+                gm.Victoria();
             }
+        }
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            TakeDmg();
         }
        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Hazard"))
+        if (collision.gameObject.CompareTag("Hazard") || collision.gameObject.CompareTag("Boss"))
         {
             TakeDmg();
         }
+      
+
     }
     private void AtaqueCorto()
     {
@@ -217,11 +209,13 @@ public class PlayerController : MonoBehaviour {
         if (atacado != null)
         {
             Debug.Log(atacado.gameObject.tag);
-            if (atacado.gameObject.CompareTag("Enemigo"))
+            if (atacado.CompareTag("Enemigo"))
             {
-                atacado.GetComponent<BasicEnemy>().TakeDamage(5);
+                atacado.GetComponent<BasicEnemy>().TakeDamage(punchDamage);
+            }else if (atacado.CompareTag("Boss"))
+            {
+                atacado.GetComponent<BossFightController>().TakeDmg(punchDamage);
             }
-           
         }
         else
         {
