@@ -11,14 +11,13 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine("FadeImage");
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         gm.GameOver(false);
-        StartCoroutine("FadeImage");
     }
 
     public void PlayGame()
     {
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         gm.ActivarCanvas(true);
     }

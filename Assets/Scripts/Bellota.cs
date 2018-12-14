@@ -11,7 +11,7 @@ public class Bellota : MonoBehaviour
     private float liveTime = 3f;
     private float timer = 0;
 
-    private BasicEnemy Enemigo;
+    private AbstractEnemy Enemigo;
 
     private void Start()
     {
@@ -29,9 +29,8 @@ public class Bellota : MonoBehaviour
     {
         if (hitInfo.CompareTag("Enemigo"))
         {
-            Enemigo = hitInfo.GetComponent<BasicEnemy>();
+            Enemigo = hitInfo.GetComponent<AbstractEnemy>();
             Enemigo.TakeDamage(damage);
-            //Debug.Log(hitInfo);
             Destroy(gameObject);
         }
         else

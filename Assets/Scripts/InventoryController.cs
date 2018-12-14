@@ -43,9 +43,23 @@ public class InventoryController : MonoBehaviour {
             {
                 gm.playerHealth += 3;
             }
-            isFull[0] = false;
+            isFull[1] = false;
             GameObject gb = slots[1].transform.GetChild(0).gameObject;
             Destroy(gb);
+        }
+    }
+    public void VaciarInventario()
+    {
+        for (int i = 0; i < numeroDeSlots; i++)
+        {
+            if (isFull[i])
+            {
+                GameObject gb = slots[i].transform.GetChild(0).gameObject;
+                
+                Destroy(gb);
+            }
+            isFull[i] = false;
+            objetos[i] = null;
         }
     }
 }

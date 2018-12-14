@@ -16,8 +16,6 @@ public class AudioManager : MonoBehaviour {
     public AudioClip MuertePlayer;
     public AudioClip DmgPlayer;
 
-
-
     public AudioSource audiomain;
     public AudioSource audioEfectos;
     public AudioSource audioPlayer;
@@ -46,8 +44,8 @@ public class AudioManager : MonoBehaviour {
     }
     public void MuerteEnemy()
     {
-        audioPlayer.clip = MuerteEnemigo;
-        audioPlayer.Play();
+        audiomain.clip = MuerteEnemigo;
+        audiomain.Play();
     }
     public void punch ()
     {
@@ -61,13 +59,13 @@ public class AudioManager : MonoBehaviour {
     }
     public void jump()
     {
-        audioPlayer.clip = salto;
-        audioPlayer.Play();
+        audiomain.clip = salto;
+        audiomain.Play();
     }
     public void Death()
     {
-        audioEfectos.clip = MuertePlayer;
-        audioEfectos.Play();
+        audiomain.clip = MuertePlayer;
+        audiomain.Play();
     }
     public void Dmgoof()
     {

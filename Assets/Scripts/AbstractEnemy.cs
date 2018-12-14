@@ -7,14 +7,16 @@ public abstract class AbstractEnemy : MonoBehaviour
     public Vector2 InitialPosition;
     public Vector2 FinalPosition;
 
-    private float _currentPatrolTime = 0;
-    private bool _direction = true; //derecha
+    protected float _currentPatrolTime = 0;
+    protected bool _direction = true; //derecha
+
     public float Health = 100;
     public float Speed = 5;
+    public GameObject muerte;
 
-    private Animator ator2;
-    private PlayerController pc;
-    private bool muerto = false;
+    protected Animator ator2;
+    protected PlayerController pc;
+    protected bool muerto = false;
 
     void Start()
     {
@@ -22,20 +24,24 @@ public abstract class AbstractEnemy : MonoBehaviour
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
-    protected virtual void Move()
+    public virtual void Move()
     {
         gameObject.transform.position = Vector2.Lerp(InitialPosition, FinalPosition, _currentPatrolTime);
     }
 
-    public void Update()
+    public virtual void Update()
     {
-        ator2.SetBool("Muerto", muerto);
-        Move();
         CheckIsDead();
+        ator2.SetBool("Muerto", muerto);
+        if (muerto)
+        {
+            return;
+        }
+        Move();
         Patrol();
     }
 
-    protected virtual void Patrol()
+    public virtual void Patrol()
     {
         if (_direction)
         {
@@ -62,17 +68,14 @@ public abstract class AbstractEnemy : MonoBehaviour
     {
         Health -= damage;
     }
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
 
-    private void CheckIsDead()
+    protected void CheckIsDead()
     {
-        if (Health <= 0)
+        if (Health <= 0 && !muerto)
         {
             muerto = true;
-            Invoke("Destruir", 1);
+            GameObject explosion = Instantiate(muerte, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,9 +84,5 @@ public abstract class AbstractEnemy : MonoBehaviour
         {
             pc.TakeDmg();
         }
-    }
-    private void Destruir()
-    {
-        Destroy(gameObject);
     }
 }

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4320994460582134}
   - component: {fileID: 212000156810031104}
   - component: {fileID: 95730012479769214}
+  - component: {fileID: 114589764102243620}
   m_Layer: 0
   m_Name: EfectoMuerte
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716087943044798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: -0.29999998, z: 0}
+  m_LocalPosition: {x: -1.8826239, y: -0.19826055, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,6 +59,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114589764102243620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716087943044798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2da63e3a0d90324da6c82918319edc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000156810031104
 SpriteRenderer:
   m_ObjectHideFlags: 1

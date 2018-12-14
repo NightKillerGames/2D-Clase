@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour {
     public int playerHealth = 3;
     public bool gameOver = false;
     private bool canvasIsEnable = false;
-    private AudioManager audio;
+    private AudioManager _audio;
+    private InventoryController ic;
 
 void Awake()
     {
@@ -35,8 +36,8 @@ void Awake()
     void Start () {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
+        _audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        ic = GetComponent<InventoryController>();
     }
 
     void Update()
@@ -87,17 +88,20 @@ void Awake()
     public void GemaCogida()
     {
         gemas ++;
-        audio.SonidoGema();
+        _audio.SonidoGema();
         countText.text = gemas.ToString()+"X ";
     }
     public IEnumerator GoToMenu()
     {
         gameOver = false;
+        ActivarCanvas(false);
         yield return new WaitForSeconds(1);
         playerHealth = 3;
+        gemas = 0;
+        ic.VaciarInventario();
         SceneManager.LoadScene("Menu");
-        yield return new WaitForSeconds(0.001f);
-        ActivarCanvas(false);
+       // yield return new WaitForSeconds(0.001f);
+       // ActivarCanvas(false);
 
     }
     public void ActivarCanvas(bool enable)
@@ -112,7 +116,7 @@ void Awake()
         gameOverText.SetActive(isOver);
         if (isOver)
         {
-            audio.Death();
+            _audio.Death();
             StartCoroutine(GoToMenu());
         }
     }

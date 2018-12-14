@@ -28,7 +28,7 @@ public class ItemsPickUp : MonoBehaviour {
                 }
                 else
                 {
-
+                    Debug.Log("Inventario lleno");
                 }
             }
         }

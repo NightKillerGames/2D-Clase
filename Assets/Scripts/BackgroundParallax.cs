@@ -7,14 +7,13 @@ public class BackgroundParallax : MonoBehaviour {
     public Camera cam;
     private SpriteRenderer spr;
     private float camX;
-    // Use this for initialization
+
     void Start ()
     {
         camX = cam.transform.position.x;
         spr = GetComponentInChildren<SpriteRenderer>();
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
         camX = cam.transform.position.x;

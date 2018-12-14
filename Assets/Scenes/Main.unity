@@ -253,7 +253,7 @@ Transform:
   m_Children:
   - {fileID: 1216432200}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &350771588
 GameObject:
@@ -678,7 +678,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &643267900
 GameObject:
@@ -3594,7 +3594,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4947044843753608, guid: 4a85e7cb44ae2d4499a957dedaea83f1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.48
+      value: 8.13
       objectReference: {fileID: 0}
     - target: {fileID: 4947044843753608, guid: 4a85e7cb44ae2d4499a957dedaea83f1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3628,6 +3628,17 @@ Prefab:
         type: 2}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114403887870713502, guid: 4a85e7cb44ae2d4499a957dedaea83f1,
+        type: 2}
+      propertyPath: muerte
+      value: 
+      objectReference: {fileID: 1716087943044798, guid: 1e0dee1d4c3304849a0cd21531bc5d02,
+        type: 2}
+    - target: {fileID: 212268178047863948, guid: 4a85e7cb44ae2d4499a957dedaea83f1,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a85e7cb44ae2d4499a957dedaea83f1, type: 2}
@@ -4456,7 +4467,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1629668559
 Prefab:
@@ -5913,7 +5924,7 @@ MonoBehaviour:
   jumpimpulse: 9
   speed: 5
   grounddetectionradius: 0.05
-  invincibilityTime: 0.5
+  invincibilityTime: 3
   empujeDMG: {x: 0, y: 5}
   radioPunch: 0.2
   lm:
@@ -5938,5 +5949,5 @@ Transform:
   - {fileID: 1309739726}
   - {fileID: 514220273}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

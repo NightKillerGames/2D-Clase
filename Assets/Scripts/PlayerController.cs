@@ -54,10 +54,10 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         ator.SetBool("Dmg", dmg);
-       
         if (dmg)
         {
             invincibilityTimeCounter += Time.deltaTime;
+
             if (invincibilityTimeCounter >= invincibilityTime)
             {
                 dmg = false;
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDmg()
     {
-        //audio.Dmgoof();
+        //_audio.Dmgoof();
         gm.playerHealth -= 1;
         empuje = true;
         dmg = true;
@@ -193,6 +193,14 @@ public class PlayerController : MonoBehaviour {
             gm.GemaCogida();
             Destroy(collision.gameObject);
         }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(5)){
+            if (collision.CompareTag("FinalDoor"))
+            {
+                gm.ActivarCanvas(false);
+                SceneManager.LoadScene(0);
+            }
+        }
+       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -217,8 +225,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Estas atacando al aire puto tonto");
-            
+          
         }
        
     }
