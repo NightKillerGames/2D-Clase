@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip MuerteEnemigo;
     public AudioClip puño;
     public AudioClip lanzarbellota;
+    public AudioClip inpactobellota;
     public AudioClip salto;
     public AudioClip MuertePlayer;
     public AudioClip DmgPlayer;
@@ -71,5 +72,10 @@ public class AudioManager : MonoBehaviour {
     {
         audioPlayer.clip = DmgPlayer;
         audioPlayer.Play();
+    }
+    public void InpactoBellota()
+    {
+        audioEfectos.clip = inpactobellota;
+        audioEfectos.Play();
     }
 }

@@ -13,10 +13,12 @@ public class Bellota : MonoBehaviour
 
     private AbstractEnemy Enemigo;
     private BossFightController Boss;
+    private AudioManager audio;
 
     private void Start()
     {
         rb.velocity = transform.right * speed;
+        audio= GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
     private void Update()
     {
@@ -32,6 +34,7 @@ public class Bellota : MonoBehaviour
         {
             Enemigo = hitInfo.GetComponent<AbstractEnemy>();
             Enemigo.TakeDamage(damage);
+            audio.InpactoBellota();
             Destroy(gameObject);
         }
         else if (hitInfo.CompareTag("Boss"))
