@@ -21,6 +21,10 @@ public class InventoryController : MonoBehaviour {
         
         if (Input.GetKeyDown(KeyCode.X))
         {
+            if (!isFull[0])
+            {
+                return;
+            }
             if (objetos[0] == "MedioCorazonCura")
             {
                 gm.playerHealth += 1;
@@ -35,6 +39,10 @@ public class InventoryController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            if (!isFull[1])
+            {
+                return;
+            }
             if (objetos[1] == "MedioCorazonCura")
             {
                 gm.playerHealth += 1;

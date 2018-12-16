@@ -13,7 +13,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     public float Health = 100;
     public float Speed = 5;
     public GameObject muerte;
-    private AudioManager audio;
+    private AudioManager _audio;
 
     protected Animator ator2;
     protected PlayerController pc;
@@ -23,7 +23,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     {
         ator2 = GetComponent<Animator>();
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        _audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     public virtual void Move()
@@ -37,7 +37,7 @@ public abstract class AbstractEnemy : MonoBehaviour
         ator2.SetBool("Muerto", muerto);
         if (muerto)
         {
-            audio.MuerteEnemy();
+            _audio.MuerteEnemy();
             return;
         }
         Move();

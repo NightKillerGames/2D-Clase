@@ -7,17 +7,18 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     public float gemas;
+    public int playerHealth = 3;
+    public bool gameOver = false;
     public Sprite[] corazones = new Sprite[4];
     public Image salud;
     public Text countText;
     public GameObject gameOverText;
     public GameObject victoryText;
     public GameObject pauseText;
+
+    private bool canvasIsEnable = false;
     private GameObject canvas;
     private PlayerController pc;
-    public int playerHealth = 3;
-    public bool gameOver = false;
-    private bool canvasIsEnable = false;
     private AudioManager _audio;
     private InventoryController ic;
 
@@ -67,7 +68,6 @@ void Awake()
                 salud.sprite = corazones[3];
                 break;
         }
-        //Paralax 
         
 
         //Pausa

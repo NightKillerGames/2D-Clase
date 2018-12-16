@@ -21,6 +21,7 @@ public class BossFightController : MonoBehaviour {
     private bool cast = false;
     private AudioSource _audio;
     private bool isDead = false;
+    private bool start = false;
 
 	void Start () {
         anim = GetComponent<Animator>();
@@ -31,8 +32,16 @@ public class BossFightController : MonoBehaviour {
         oleada4 = new Transform[] {Spawns[1],Spawns[2],Spawns[3]};
         oleadas = new Transform[][] {oleada1, oleada2, oleada3, oleada4};
     }
-	
+	public void EmpezarCombate()
+    {
+        start = true;
+        _audio.Play();
+    }
 	void Update () {
+        if (!start)
+        {
+            return;
+        }
         CheckIsDead();
         if (isDead)
         {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
-
     private static AudioManager instance = null;
     private static PlayerController pc;
 

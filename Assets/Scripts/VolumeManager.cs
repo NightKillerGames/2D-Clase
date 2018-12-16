@@ -6,11 +6,10 @@ using UnityEngine.Audio;
 public class VolumeManager : MonoBehaviour
 {
 
-    [SerializeField] public AudioMixer audio;
+    [SerializeField] public AudioMixer _audio;
 
-    // Update is called once per frame
     public void SetVolume(float volume)
     {
-        audio.SetFloat("volume", volume);
+        _audio.SetFloat("volume", volume);
     }
 }

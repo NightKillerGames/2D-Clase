@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour {
     public float radioPunch = 0.2f;
     public LayerMask lm;
     public int punchDamage = 5;
+    public float shootDelayMaxTime = 0.1f;
+    public float punchDelayMaxTime = 0.5f;
+
+    public Transform firePoint;
+    public GameObject BellotaPrefab;
+    public Transform puñetazo;
 
     private bool canMove = true;
     private bool dmg = false;
@@ -26,41 +32,39 @@ public class PlayerController : MonoBehaviour {
     private float velocidadx;
     private bool jump;
     private bool grounded;
-    
     private bool jumpReleased;
+    private float shootDelay;
+    private float punchDelay;
+    private bool puerta = false;
+    private bool invencible = false;
+    private float cantMoveTime = 0.2f;
+    private int maxMovement = 9;
+
     private RaycastHit2D[] results = new RaycastHit2D[14];
     private Rigidbody2D rb2d;
     private Animator ator;
-
-    public float shootDelayMaxTime = 0.1f;
-    private float shootDelay;
-    public float punchDelayMaxTime = 0.5f;
-    private float punchDelay;
     private GameManager gm;
-    private AudioManager audio;
-
-    public Transform firePoint;
-    public GameObject BellotaPrefab;
-    private bool puerta = false;
-    public Transform puñetazo;
+    private AudioManager _audio;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         ator = GetComponent<Animator>();
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        _audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
     {
         ator.SetBool("Dmg", dmg);
+       
         if (dmg)
         {
             invincibilityTimeCounter += Time.deltaTime;
-
+            invencible = true;
             if (invincibilityTimeCounter >= invincibilityTime)
             {
+                invencible = false;
                 dmg = false;
                 invincibilityTimeCounter = 0;
             }
@@ -89,14 +93,14 @@ public class PlayerController : MonoBehaviour {
         shootDelay += Time.deltaTime;
         if (Input.GetButtonDown("Fire2") && shootDelay >= shootDelayMaxTime)
         {
-            audio.bellota();
+            _audio.bellota();
             Shoot();
             shootDelay = 0;
         }
         punchDelay += Time.deltaTime;
         if (Input.GetButtonDown("Fire1") && punchDelay >= punchDelayMaxTime)
         {
-            audio.punch();
+            _audio.punch();
             ator.SetTrigger("puño");
             AtaqueCorto();
             punchDelay = 0;
@@ -125,7 +129,7 @@ public class PlayerController : MonoBehaviour {
         if (jump && grounded && canMove)
         {
             rb2d.AddForce(new Vector2(0, jumpimpulse), ForceMode2D.Impulse);
-            audio.jump();
+            _audio.jump();
         }
         if (empuje)
         {
@@ -133,15 +137,15 @@ public class PlayerController : MonoBehaviour {
             empuje = false;
             StartCoroutine("StopPlayerMovement");
         }
-        if (rb2d.velocity.y>9)
+        if (rb2d.velocity.y> maxMovement)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, 9);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, maxMovement);
         }
     }
     IEnumerator StopPlayerMovement()
     {
         canMove = false;
-        yield return new WaitForSeconds(0.2f);///dasdasad///
+        yield return new WaitForSeconds(cantMoveTime);
         canMove = true;
     }
 
@@ -153,6 +157,10 @@ public class PlayerController : MonoBehaviour {
     public void TakeDmg()
     {
         //_audio.Dmgoof();
+        if (invencible)
+        {
+            return;
+        }
         gm.playerHealth -= 1;
         empuje = true;
         dmg = true;
@@ -190,6 +198,10 @@ public class PlayerController : MonoBehaviour {
         {
             TakeDmg();
         }
+        if (collision.gameObject.CompareTag("BossDoor"))
+        {
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<BossFightController>().EmpezarCombate();
+        }
        
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -198,17 +210,12 @@ public class PlayerController : MonoBehaviour {
         {
             TakeDmg();
         }
-      
-
     }
     private void AtaqueCorto()
     {
-        
-        Debug.Log("atacado");
         Collider2D atacado = Physics2D.OverlapCircle(puñetazo.position, radioPunch, lm, -Mathf.Infinity, Mathf.Infinity);
         if (atacado != null)
         {
-            Debug.Log(atacado.gameObject.tag);
             if (atacado.CompareTag("Enemigo"))
             {
                 atacado.GetComponent<BasicEnemy>().TakeDamage(punchDamage);
@@ -221,6 +228,5 @@ public class PlayerController : MonoBehaviour {
         {
           
         }
-       
     }
 }
