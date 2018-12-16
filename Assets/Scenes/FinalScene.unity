@@ -4147,6 +4147,7 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 512
+  punchDamage: 5
   shootDelayMaxTime: 0.3
   punchDelayMaxTime: 0.5
   firePoint: {fileID: 150457371}
@@ -4160,7 +4161,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1195317673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.54, y: -1.04, z: 0}
+  m_LocalPosition: {x: -5.07, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 150457371}

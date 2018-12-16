@@ -241,6 +241,7 @@
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Bellota.cs" />
+    <Compile Include="Assets\Scripts\BossFightController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EfectoMuerte.cs" />
     <Compile Include="Assets\Scripts\FlyingEnemy.cs" />
